@@ -1,3 +1,6 @@
+#It's a short if / else game where you have to choose your next step.
+
+
 print('''
 *******************************************************************************
           |                   |                  |                     |
