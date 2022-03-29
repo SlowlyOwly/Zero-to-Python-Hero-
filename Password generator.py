@@ -21,7 +21,7 @@ ran_signs = ran_capital_letters + ran_letters + ran_numbers + ran_symbol
 
 ran_signs = random.sample(ran_signs, k=len(ran_signs))
 
-password = " "
+password = ""
 
 for sign in ran_signs:
   password += sign
