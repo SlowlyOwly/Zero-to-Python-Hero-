@@ -1,0 +1,158 @@
+logo = """
+.------.            _     _            _    _            _    
+|A_  _ |.          | |   | |          | |  (_)          | |   
+|( \/ ).-----.     | |__ | | __ _  ___| | ___  __ _  ___| | __
+| \  /|K /\  |     | '_ \| |/ _` |/ __| |/ / |/ _` |/ __| |/ /
+|  \/ | /  \ |     | |_) | | (_| | (__|   <| | (_| | (__|   < 
+`-----| \  / |     |_.__/|_|\__,_|\___|_|\_\ |\__,_|\___|_|\_\\
+      |  \/ K|                            _/ |                
+      `------'                           |__/           
+"""
+
+import random
+from replit import clear
+
+cards = [11, 2, 3, 4, 5, 6, 7, 8, 9, 10, 10, 10, 10]
+
+
+def player_cards():
+    return random.sample(cards, k=2)
+
+
+def add_card():
+    return random.sample(cards, k=1)
+
+
+start_game = input("Do you want to play Black Jack? Type 'y' for start or 'n' for exit. ").lower()
+
+if start_game == "y":
+    def BlackJack():
+        game = True
+        player = []
+        dealer = []
+        print(logo)
+
+        player += player_cards()
+        print(f"Your cards: {player}")
+        dealer += add_card()
+        print(f"Dealer cards: [] {dealer}")
+        score = sum(player)
+        print(f"Your score: {score}")
+        
+        if score == 21:
+          print("You Win!")
+          game = False
+          again = input("Do you want play again? y/n ").lower()
+          if again == "y":
+              clear()
+              BlackJack()
+          else:
+              print("Game Over")
+        else:
+          check = input("Do you want 'check' or 'pass'? ").lower()
+        while game:
+          if check == "check":
+              player += add_card()
+              print(f"Your cards: {player}")
+              dealer += add_card()
+              print(f"Dealer cards: [] {dealer}")
+              score = sum(player)
+              d_score = sum(dealer)
+              print(f"Your score: {score}")
+              print(f"Dealer score: {d_score}")
+
+              if score == 21:
+                  print("You Win!")
+                  game = False
+                  again = input("Do you want play again? y/n ").lower()
+                  if again == "y":
+                      clear()
+                      BlackJack()
+                  else:
+                      print("Game Over")
+
+              elif score > 21:
+                  print("Game over, you lose!")
+                  game = False
+                  again = input("Do you want play again? y/n ").lower()
+                  if again == "y":
+                      clear()
+                      BlackJack()
+                  else:
+                      print("Game Over")
+
+              elif d_score > 21:
+                print("You Win!")
+                game = False
+                again = input("Do you want play again? y/n ").lower()
+                if again == "y":
+                    clear()
+                    BlackJack()
+                else:
+                    print("Game Over")
+              else:
+                check = input("Do you want 'check' or 'pass'? ").lower()
+                
+          elif check == "pass":
+              d_score = sum(dealer)
+              while d_score < 18:
+                  dealer += add_card()
+                  print(f"Dealer cards: [] {dealer}")
+                  d_score = sum(dealer)
+                  print(f"Dealer score: {d_score}")
+
+                  if d_score > 21:
+                      print("You win!")
+                      game = False
+                      again = input("Do you want play again? y/n ").lower()
+                      if again == "y":
+                          clear()
+                          BlackJack()
+                      else:
+                          print("Game Over")
+                        
+                  elif d_score > score:
+                    print("You Loose!")
+                    game = False
+                    again = input("Do you want play again? y/n ").lower()
+                    if again == "y":
+                        clear()
+                        BlackJack()
+                    else:
+                        print("Game Over")
+
+                  elif d_score == score:
+                    print("Draw!")
+                    game = False
+                    again = input("Do you want play again? y/n ").lower()
+                    if again == "y":
+                        clear()
+                        BlackJack()
+                    else:
+                        print("Game Over")
+                    
+                  elif d_score >= 18:
+                    if d_score > score:
+                        print("You Loose!")
+                        game = False
+                        again = input("Do you want play again? y/n ").lower()
+                        if again == "y":
+                            clear()
+                            BlackJack()
+                        else:
+                            print("Game Over")
+
+                    elif d_score < score:
+                        print("You Win!")
+                        game = False
+                        again = input("Do you want play again? y/n ").lower()
+                        if again == "y":
+                            clear()
+                            BlackJack()
+                        else:
+                            print("Game Over")
+                         
+else:
+    print("Goodbye")
+
+BlackJack()
