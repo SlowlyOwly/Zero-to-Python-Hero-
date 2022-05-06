@@ -1,0 +1,27 @@
+import random
+import turtle as t
+
+#rgb color list used for paint
+color_list = [(236, 250, 244), (236, 80, 224), (197, 71, 7), (195, 13, 164), (201, 15, 75), (231, 132, 54), (110, 216, 179)]
+
+timmy = t.Turtle()
+t.colormode(255)
+timmy.ht()
+
+
+def step():
+    position_x = -250
+    position_y = -250
+    for pos in range(10):
+        timmy.penup()
+        timmy.setx(position_x)
+        timmy.sety(position_y)
+        for _ in range(10):
+            timmy.dot(20, random.choice(color_list))
+            timmy.forward(50)
+        position_y +=50
+step()
+
+
+screen = t.Screen()
+screen.exitonclick()
